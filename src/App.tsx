@@ -1,23 +1,22 @@
-import logo from "./logo.svg";
-import * as S from "./App.styles";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 function App() {
   return (
-    <S.AppContainer>
-      <S.AppHeader>
-        <S.AppLogo src={logo} alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <S.AppLink
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </S.AppLink>
-      </S.AppHeader>
-    </S.AppContainer>
+    <div>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">
+            Lugares
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Container>
+        Olá, mundo!
+      </Container>
+    </div>
   );
 }
 
