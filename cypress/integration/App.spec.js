@@ -33,3 +33,25 @@ it("should add a new place", () => {
     .and("contain", "São Luís")
     .and("contain", "02/2021");
 });
+
+it("shoud edit a place properly", () => {
+  cy.get("ul li").first().find("button").first().click();
+
+  cy.get('div[role="dialog"] form input')
+    .parent()
+    .then(($inputs) => {
+      const [_, $localEl, $goalEl] = $inputs;
+
+      cy.get($localEl).find("input").clear().type("São Paulo");
+
+      cy.get($goalEl).find("input").clear().type("122077");
+    });
+
+  cy.get('div[role="dialog"] form button[type="submit"]').click();
+
+  cy.get("ul li").should("have.length", 1);
+  cy.get("ul li")
+    .first()
+    .should("contain", "São Paulo")
+    .and("contain", "12/2077");
+});
