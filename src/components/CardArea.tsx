@@ -57,7 +57,7 @@ export default function CardArea() {
         places.map((place: any) => {
           const country = countries.find((c) => c.id === place.countryCode);
           return (
-            <Box sx={{ width: "100%" }} key={place.id}>
+            <Box component="li" sx={{ width: "100%", listStyle: "none" }} key={place.id}>
               <PlaceCard
                 flag={country?.flag || ""}
                 country={country?.name || ""}
