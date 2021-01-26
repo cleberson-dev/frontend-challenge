@@ -14,7 +14,7 @@ const Container = styled.select`
   background-color: white;
   padding: 1rem;
   border-radius: 7px;
-  font-size: 16px;
+  font-size: 1rem;
   border: none;
   outline: none;
   width: 100%;
