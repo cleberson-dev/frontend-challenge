@@ -42,6 +42,7 @@ export default function CardArea() {
 
   return (
     <Box
+      component="ul"
       sx={{
         ...defaultSx,
         display: "grid",
