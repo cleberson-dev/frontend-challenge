@@ -12,8 +12,6 @@ import { addPlace } from "../slices/placesSlice";
 import { notify } from "../slices/notificationSlice";
 import { placeValidator } from "../validators";
 
-
-
 function SearchArea() {
   const dispatch = useDispatch();
   const countries = useSelector<AppState, CountriesState>(
@@ -29,7 +27,7 @@ function SearchArea() {
     setLocal("");
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const payload = {
@@ -43,33 +41,33 @@ function SearchArea() {
       return dispatch(notify({ type: "error", message }));
     }
 
-    fetch("http://localhost:5000/places", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(addPlace(data));
-        dispatch(
-          notify({
-            type: "success",
-            message: "Lugar adicionado com sucesso!",
-          })
-        );
-        clearInputs();
-      })
-      .catch((err) => {
-        dispatch(
-          notify({
-            type: "error",
-            message: "Ooops! Algo deu errado. Tente novamente.  =(",
-          })
-        );
-        console.log(err);
+    try {
+      const response = await fetch("http://localhost:5000/places", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+      const data = await response.json();
+
+      dispatch(addPlace(data));
+      dispatch(
+        notify({
+          type: "success",
+          message: "Lugar adicionado com sucesso!",
+        })
+      );
+      clearInputs();
+    } catch (err) {
+      dispatch(
+        notify({
+          type: "error",
+          message: "Ooops! Algo deu errado. Tente novamente.  =(",
+        })
+      );
+      console.log(err);
+    }
   }
 
   return (
