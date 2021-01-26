@@ -1,0 +1,28 @@
+{
+  "places": [
+    {
+      "countryCode": "BRA",
+      "name": "São Paulo",
+      "goal": "02/2021",
+      "id": 1
+    },
+    {
+      "countryCode": "DNK",
+      "name": "Copenhaguen",
+      "goal": "02/2021",
+      "id": 2
+    },
+    {
+      "countryCode": "ISL",
+      "name": "Lagoa Azul",
+      "goal": "03/2023",
+      "id": 3
+    },
+    {
+      "countryCode": "CAN",
+      "name": "Vancouver",
+      "goal": "03/2030",
+      "id": 4
+    }
+  ]
+}
