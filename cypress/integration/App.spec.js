@@ -55,3 +55,8 @@ it("shoud edit a place properly", () => {
     .should("contain", "São Paulo")
     .and("contain", "12/2077");
 });
+
+it("should delete a place", () => {
+  cy.get("ul li").first().find("button").last().click();
+  cy.get("ul li").should("have.length", 0);
+});
