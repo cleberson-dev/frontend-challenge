@@ -8,10 +8,11 @@ const Container = styled.button<{ bgColor?: string }>`
   border-radius: 7px;
   border: none;
   outline: none;
-  font-size: 18px;
+  font-size: 1.1rem;
   padding: 1rem;
   cursor: pointer;
   max-height: 100%;
+  width: 100%;
 
   &:hover {
     filter: brightness(0.9);
