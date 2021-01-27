@@ -25,6 +25,7 @@ function TextField(props: TextFieldProps) {
 
 const Form = styled.form`
   padding: 1rem;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -72,9 +73,10 @@ function EditPlaceDialog(props: EditPlaceDialogProps) {
           label="País"
           value={country}
           onChange={(e) => setCountry(String(e.target.value))}
+          native
         >
           {countries.map(c => (
-            <MenuItem value={c.id}>{c.name}</MenuItem>
+            <option value={c.id}>{c.name}</option>
           ))}
           </MuiSelect>
 
@@ -82,6 +84,7 @@ function EditPlaceDialog(props: EditPlaceDialogProps) {
           label="Local"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          style={{ width: '100%' }}
         />
 
         <InputMask
@@ -93,6 +96,7 @@ function EditPlaceDialog(props: EditPlaceDialogProps) {
             <TextField
               {...inputProps}
               label="Meta"
+              style={{ width: '100%' }}
             />
           )}
         </InputMask>
