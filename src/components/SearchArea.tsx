@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputMask from "react-input-mask";
-import Box from "@material-ui/core/Box";
 import Select from "./Select";
 import Input from "./Input";
 import Button from "./Button";
@@ -11,6 +10,7 @@ import { CountriesState } from "../slices/countriesSlice";
 import { addPlace } from "../slices/placesSlice";
 import { notify } from "../slices/notificationSlice";
 import { placeValidator } from "../validators";
+import * as S from "./SearchArea.styles";
 
 function SearchArea() {
   const dispatch = useDispatch();
@@ -71,61 +71,44 @@ function SearchArea() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Box
-        sx={{
-          bgcolor: "#4F9419",
-          paddingX: 5,
-          paddingY: 10,
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 200px",
-          gridColumnGap: 30,
-          alignItems: "center",
-        }}
-      >
-        {/* País */}
-        <FormControl label="País">
-          <Select
-            options={countries}
-            value={country}
-            onChange={(e) => setCountry(String(e.target.value))}
-          />
-        </FormControl>
-
-        {/* Local */}
-        <FormControl label="Local">
-          <Input
-            value={local}
-            onChange={(e) => setLocal(e.target.value)}
-            placeholder="Digite o local que deseja conhecer"
-            minLength={2}
-            maxLength={32}
-            required
-          />
-        </FormControl>
-
-        {/* Meta */}
-        <FormControl label="Meta">
-          <InputMask
-            mask="99/9999"
-            value={goal}
-            onChange={(e) => setGoal(e.target.value)}
-            required
-          >
-            {(inputProps: any) => (
-              <Input {...inputProps} label="Meta" placeholder="mês/ano" />
-            )}
-          </InputMask>
-        </FormControl>
-
-        <Button
-          bgColor="#006C18"
-          color="#FFF"
-          title="Adicionar"
-          type="submit"
+    <S.Form onSubmit={handleSubmit}>
+      {/* País */}
+      <FormControl label="País">
+        <Select
+          options={countries}
+          value={country}
+          onChange={(e) => setCountry(String(e.target.value))}
         />
-      </Box>
-    </form>
+      </FormControl>
+
+      {/* Local */}
+      <FormControl label="Local">
+        <Input
+          value={local}
+          onChange={(e) => setLocal(e.target.value)}
+          placeholder="Digite o local que deseja conhecer"
+          minLength={2}
+          maxLength={32}
+          required
+        />
+      </FormControl>
+
+      {/* Meta */}
+      <FormControl label="Meta">
+        <InputMask
+          mask="99/9999"
+          value={goal}
+          onChange={(e) => setGoal(e.target.value)}
+          required
+        >
+          {(inputProps: any) => (
+            <Input {...inputProps} label="Meta" placeholder="mês/ano" />
+          )}
+        </InputMask>
+      </FormControl>
+
+      <Button bgColor="#006C18" color="#FFF" title="Adicionar" type="submit" />
+    </S.Form>
   );
 }
 
