@@ -1,4 +1,4 @@
 # Desafio de Frontend
 
-<img src="./logo-clubpetro.png"
+<img src="./img/logo-clubpetro.png"
      alt="Clubpetro" width="300">
