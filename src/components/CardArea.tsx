@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import PlaceCard from "./PlaceCard";
 import EditPlaceDialog, { EditPlaceDialogProps } from "./EditPlaceDialog";
 import { AppState } from "../store";
 import { editPlace, removePlace } from "../slices/placesSlice";
 import { notify } from "../slices/notificationSlice";
+import * as S from './CardArea.styles';
 
 export default function CardArea() {
   const { places, countries } = useSelector<AppState, AppState>(
@@ -19,45 +21,20 @@ export default function CardArea() {
     setEditDialogProps,
   ] = useState<EditPlaceDialogProps | null>(null);
 
-  const defaultSx = {
-    paddingX: 5,
-    paddingY: 8,
-    width: "100%",
-  };
-
   if (countries.length === 0)
     return (
-      <Box
-        sx={{
-          ...defaultSx,
-          height: "200px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <S.LoadingContainer>
         <CircularProgress />
-      </Box>
+      </S.LoadingContainer>
     );
 
   return (
-    <Box
-      component="ul"
-      sx={{
-        ...defaultSx,
-        display: "grid",
-        gridTemplateColumns: "repeat(5, 1fr)",
-        justifyItems: "center",
-        gridColumnGap: 30,
-        gridRowGap: 30,
-        boxSizing: "border-box"
-      }}
-    >
+    <S.PlaceList>
       {places.length > 0 &&
         places.map((place: any) => {
           const country = countries.find((c) => c.id === place.countryCode);
           return (
-            <Box component="li" sx={{ width: "100%", listStyle: "none" }} key={place.id}>
+            <S.PlaceItem key={place.id}>
               <PlaceCard
                 flag={country?.flag || ""}
                 country={country?.name || ""}
@@ -93,7 +70,7 @@ export default function CardArea() {
                   });
                 }}
               />
-            </Box>
+            </S.PlaceItem>
           );
         })}
       {editDialogProps && (
@@ -139,6 +116,6 @@ export default function CardArea() {
           }}
         />
       )}
-    </Box>
+    </S.PlaceList>
   );
 }
