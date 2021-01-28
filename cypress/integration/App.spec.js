@@ -40,7 +40,7 @@ it("shoud edit a place properly", () => {
   cy.get('div[role="dialog"] form input')
     .parent()
     .then(($inputs) => {
-      const [_, $localEl, $goalEl] = $inputs;
+      const [$localEl, $goalEl] = $inputs;
 
       cy.get($localEl).find("input").clear().type("São Paulo");
 
