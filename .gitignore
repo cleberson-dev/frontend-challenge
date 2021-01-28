@@ -24,4 +24,5 @@ yarn-error.log*
 
 .eslintcache
 /.vscode
-db.test.json
+cypress/videos
+cypress/screenshots
