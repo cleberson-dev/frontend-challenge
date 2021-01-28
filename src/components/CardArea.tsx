@@ -29,7 +29,7 @@ export default function CardArea() {
     );
 
   return (
-    <S.PlaceList>
+    <S.PlaceList as="ul">
       {places.length > 0 &&
         places.map((place: any) => {
           const country = countries.find((c) => c.id === place.countryCode);
